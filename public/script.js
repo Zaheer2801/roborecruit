@@ -102,31 +102,27 @@ function playHeroAnimations() {
   gsap.fromTo('.dispatch-panel', { x: 50, opacity: 0 }, { x: 0, opacity: 1, delay: 0.5, duration: 1.6, ease: "power4.out" });
 }
 
-// --- Counter Animation ---
+// --- Counter Animation via GSAP ---
 function animateCounter(el) {
+  if(el.classList.contains('counted')) return;
   el.classList.add('counted');
   const target = +el.getAttribute('data-target');
   const prefix = el.getAttribute('data-prefix') || '';
   const suffix = el.getAttribute('data-suffix') || '';
-  const duration = 2000;
-  const stepTime = 20;
-  const steps = duration / stepTime;
-  const increment = target / steps;
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      clearInterval(timer);
-      current = target;
+  
+  let proxy = { val: 0 };
+  gsap.to(proxy, {
+    val: target,
+    duration: 2,
+    ease: "power2.out",
+    onUpdate: () => {
+      let displayVal = Math.floor(proxy.val).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      el.innerText = `${prefix}${displayVal}${suffix}`;
     }
-    // Format with commas if >= 1000
-    let displayVal = Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    el.innerText = `${prefix}${displayVal}${suffix}`;
-  }, stepTime);
+  });
 }
 
-// Trigger hero counters
+// Trigger hero counters immediately, others are tracked by scroll
 setTimeout(() => {
   document.querySelectorAll('.hero-content .counter').forEach(animateCounter);
 }, 500);
@@ -554,11 +550,7 @@ function loadDrivers() {
             document.getElementById('hero-pool-count').innerText = totalDrivers.toLocaleString() + '+';
           }
 
-          // 4. Live Ticker Badge
-          const recentlyDeployed = clearedDrivers.filter(d => typeof d.total_deployments === 'number' && d.total_deployments > 0).length;
-          if(document.getElementById('live-ticker')) {
-            document.getElementById('live-ticker').innerText = `● ${recentlyDeployed.toLocaleString()} drivers deployed this week`;
-          }
+          // 4. Removed live-ticker updating as requested by user layout reduction
 
           // 5. HERO PANEL: random 3 cards
           if(clearedDrivers.length >= 3) {
