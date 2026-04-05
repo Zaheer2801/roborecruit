@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoboRecruit® — Cyber-Dispatch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Palette from skill.md */
+      --navy-dark: #07111d;
+      --surface-panel: rgba(255, 255, 255, 0.03);
+      --purple: #660099;
+      --purple-light: #9933cc;
+      --purple-glow: rgba(102, 0, 153, 0.4);
+      --orange: #FF7A1A; /* WCAG AA compliant */
+      --orange-glow: rgba(255, 122, 26, 0.4);
+      --green: #33CC33;
+      --white: #ffffff;
+      --gray: #8899aa;
+      --light-gray: #c8d8e8;
+      
+      /* Glassmorphism details */
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      
+      --nav-height: 70px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Arimo', sans-serif;
+      background: var(--navy-dark);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5 { font-family: 'Syne', sans-serif; font-weight: 800; line-height: 1.1; }
+
+    /* ── NAV (Mobile First) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav-height);
+      padding: 0 5%;
+      background: rgba(7, 17, 29, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--purple-glow);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.2rem, 3vw, 1.4rem);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span:first-child { color: var(--purple-light); }
+    .nav-logo span:last-child { color: var(--orange); }
+    
+    .nav-links { 
+      display: none; /* hidden on mobile */
+      gap: 2.5rem; list-style: none; 
+    }
+    .nav-links a {
+      color: var(--light-gray); text-decoration: none; font-size: 0.95rem;
+      font-weight: 600; transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    
+    .nav-cta {
+      background: var(--purple); color: white; border: none; cursor: pointer;
+      padding: 0.5rem 1rem; border-radius: 6px; font-family: 'Arimo', sans-serif;
+      font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease;
+    }
+    .nav-cta:hover { background: var(--purple-light); box-shadow: 0 0 20px var(--purple-glow); transform: translateY(-1px); }
+
+    /* ── HERO (Mobile First) ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: calc(var(--nav-height) + 40px) 5% 60px;
+      overflow: hidden;
+    }
+    /* Cyber-Dispatch Background Grid Shift */
+    .hero::before {
+      content: ''; position: absolute; inset: -50%;
+      background-image:
+        linear-gradient(rgba(102, 0, 153, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102, 0, 153, 0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: grid-shift 30s linear infinite;
+      z-index: -1;
+    }
+    @keyframes grid-shift {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(60px) translateX(60px); }
+    }
+    .hero::after {
+      content: ''; position: absolute; top: -20vh; left: 50%; transform: translateX(-50%);
+      width: 1000px; height: 1000px;
+      background: radial-gradient(circle, rgba(102,0,153,0.18) 0%, transparent 60%);
+      pointer-events: none; z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 3rem; align-items: center; max-width: 1280px; margin: 0 auto; width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(102,0,153,0.15); border: 1px solid rgba(102,0,153,0.4);
+      color: #bb66ff; border-radius: 100px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(5px);
+    }
+    .badge-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+    @keyframes heartbeat {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(51,204,51,0.6); transform: scale(1); }
+      50% { box-shadow: 0 0 0 6px rgba(51,204,51,0); transform: scale(1.1); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .accent-purple { color: var(--purple-light); text-shadow: 0 0 20px var(--purple-glow); }
+    .hero-title .accent-orange { color: var(--orange); text-shadow: 0 0 20px var(--orange-glow); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem); color: var(--gray);
+      max-width: 520px; margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .stat-chip { display: flex; flex-direction: column; }
+    .stat-chip .num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.2rem); 
+      background: linear-gradient(135deg, var(--purple-light), var(--orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-chip .label { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white; border: none; cursor: pointer;
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-family: 'Arimo', sans-serif; font-weight: 700; font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 8px 25px var(--purple-glow), 0 4px 20px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: var(--surface-panel); color: var(--white); cursor: pointer;
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-family: 'Arimo', sans-serif; font-weight: 700; font-size: 1rem;
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--orange); color: var(--orange);
+      background: rgba(255, 122, 26, 0.05);
+      box-shadow: 0 0 20px var(--orange-glow);
+    }
+
+    /* Hero Visual - Dispatch Panel */
+    .dispatch-panel {
+      background: rgba(7, 17, 29, 0.6);
+      border: 1px solid rgba(102, 0, 153, 0.4);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: var(--glass-shadow), 0 0 40px rgba(102,0,153,0.15);
+      position: relative;
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .dispatch-panel:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+    .dispatch-panel::before {
+      content: ''; position: absolute; top: 0; left: 30px; right: 30px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple-light), transparent);
+    }
+    .panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.2rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .panel-title { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; }
+    .panel-status { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--green); font-weight: 700; }
+    
+    .driver-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem;
+      background: var(--surface-panel);
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .driver-row:hover { 
+      background: rgba(102,0,153,0.1); 
+      border-color: rgba(102,0,153,0.3); 
+      transform: translateX(5px);
+    }
+    .driver-info { display: flex; align-items: center; gap: 0.75rem; }
+    .driver-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .driver-name { font-size: 0.85rem; font-weight: 700; }
+    .driver-meta { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+    .status-badge {
+      padding: 0.25rem 0.65rem; border-radius: 100px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .status-cleared { background: rgba(51,204,51,0.15); color: #4dff4d; border: 1px solid rgba(51,204,51,0.3); }
+    .status-matching { background: rgba(255,122,26,0.15); color: var(--orange); border: 1px solid rgba(255,122,26,0.3); }
+    .status-standby { background: rgba(102,0,153,0.2); color: #d099ff; border: 1px solid rgba(102,0,153,0.4); }
+
+    .panel-footer {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .panel-kpi { text-align: center; }
+    .panel-kpi .kpi-num { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--orange); text-shadow: 0 0 10px var(--orange-glow); }
+    .panel-kpi .kpi-label { font-size: 0.65rem; color: var(--gray); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; }
+    .panel-cta {
+      background: var(--orange); color: white; border: none; cursor: pointer;
+      padding: 0.6rem 1.2rem; border-radius: 6px;
+      font-family: 'Arimo', sans-serif; font-weight: 700; font-size: 0.8rem;
+      transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .panel-cta:hover { background: #ff8e33; box-shadow: 0 0 20px var(--orange-glow); transform: scale(1.05); }
+
+    /* ── LOGO BAR ── */
+    .logobar {
+      padding: 1.5rem 5%;
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      background: rgba(7, 17, 29, 0.4);
+      backdrop-filter: blur(10px);
+    }
+    .logobar-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    }
+    .logobar-label { font-size: 0.75rem; color: var(--gray); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; }
+    .logobar-logos { display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .logo-pill {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(0.9rem, 2vw, 1.1rem); color: rgba(255,255,255,0.4);
+      letter-spacing: 1px; text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .logo-pill:hover { color: var(--white); text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+
+    /* ── SECTION HELPERS ── */
+    section { padding: 80px 5%; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--purple-light); margin-bottom: 1rem; display: inline-block;
+      padding: 0.3rem 0.8rem; background: rgba(102,0,153,0.15); border-radius: 100px;
+      border: 1px solid rgba(102,0,153,0.3);
+    }
+    .section-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+    .section-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--gray); max-width: 600px; line-height: 1.7; }
+
+    /* ── PROBLEM ── */
+    .problem { background: linear-gradient(180deg, var(--navy-dark) 0%, rgba(13, 31, 53, 0.5) 100%); }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3.5rem;
+    }
+    .problem-card {
+      background: rgba(7, 17, 29, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 2rem;
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: var(--glass-shadow);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .problem-card:hover { border-color: rgba(255, 122, 26, 0.5); transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,122,26,0.1); }
+    .problem-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--orange), transparent);
+    }
+    .problem-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(3rem, 6vw, 4rem); line-height: 1; color: var(--orange);
+      text-shadow: 0 0 30px var(--orange-glow);
+      margin-bottom: 0.75rem;
+    }
+    .problem-label { font-size: 1.1rem; font-weight: 700; font-family: 'Syne', sans-serif; margin-bottom: 0.5rem; }
+    .problem-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── SOLUTION ── */
+    .solution { background: var(--navy-dark); position: relative; overflow: hidden; }
+    .solution::after {
+      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 800px; height: 800px; background: radial-gradient(circle, rgba(102,0,153,0.1) 0%, transparent 70%);
+      z-index: 0; pointer-events: none;
+    }
+    .solution-inner { position: relative; z-index: 1; text-align: center; }
+    .solution-steps {
+      display: flex; flex-direction: column; gap: 2rem; margin-top: 4rem;
+      position: relative;
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 1.5rem; position: relative; z-index: 1;
+      background: rgba(255,255,255,0.02); border-radius: 16px;
+      border: 1px solid transparent; transition: all 0.3s ease;
+    }
+    .step:hover { background: rgba(255,255,255,0.04); border-color: rgba(102,0,153,0.3); transform: scale(1.02); }
+    .step-num {
+      width: 70px; height: 70px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+      background: rgba(7,17,29,0.8);
+      border: 2px solid var(--purple);
+      box-shadow: 0 0 20px var(--purple-glow);
+      margin-bottom: 1.5rem;
+      transition: all 0.4s ease;
+    }
+    .step:hover .step-num {
+      background: var(--purple);
+      box-shadow: 0 0 40px var(--purple-glow), inset 0 0 10px rgba(0,0,0,0.5);
+    }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── STATS ── */
+    .stats {
+      background: linear-gradient(135deg, rgba(102,0,153,0.15) 0%, rgba(255,122,26,0.05) 100%);
+      border-top: 1px solid rgba(102,0,153,0.25);
+      border-bottom: 1px solid rgba(102,0,153,0.25);
+      padding: 60px 5%;
+      backdrop-filter: blur(10px);
+    }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1280px; margin: 0 auto; }
+    .stat-block { text-align: center; }
+    .stat-block .big-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      background: linear-gradient(135deg, var(--purple-light), var(--orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1; margin-bottom: 0.5rem;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+    }
+    .stat-block .stat-label { font-size: 0.95rem; font-weight: 700; color: var(--light-gray); text-transform: uppercase; letter-spacing: 1px; }
+    .stat-block .stat-sub { font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem; }
+
+    /* ── NETWORK ANIMATION ── */
+    .network-section {
+      background: var(--navy-dark); padding: 100px 5%; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .map-container { max-width: 900px; margin: 3rem auto 0; position: relative; }
+    .map-bg {
+      background: rgba(7, 17, 29, 0.7);
+      border: 1px solid rgba(102, 0, 153, 0.3);
+      border-radius: 20px; padding: 2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(102,0,153,0.1);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+
+    .network-nodes {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem;
+    }
+    .node {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem; border-radius: 100px;
+      font-size: 0.85rem; font-weight: 700;
+      background: rgba(102,0,153,0.1); border: 1px solid rgba(102,0,153,0.3);
+      color: #dfb3ff;
+      animation: nodeFlicker 3s ease-in-out infinite;
+      backdrop-filter: blur(5px);
+    }
+    .node:nth-child(2n) { animation-delay: 0.5s; border-color: rgba(255,122,26,0.3); color: var(--orange); background: rgba(255,122,26,0.1); }
+    .node:nth-child(3n) { animation-delay: 1s; border-color: rgba(51,204,51,0.3); color: #80ff80; background: rgba(51,204,51,0.1); }
+    @keyframes nodeFlicker {
+      0%, 100% { opacity: 0.8; box-shadow: 0 0 0 transparent; }
+      50% { opacity: 1; box-shadow: 0 0 15px currentColor; transform: scale(1.05); }
+    }
+    .node-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: heartbeat 1.5s ease-in-out infinite; }
+
+    .road-svg { width: 100%; height: auto; max-width: 860px; display: block; margin: 0 auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
+    .road-line {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawLine 4s cubic-bezier(0.4, 0, 0.2, 1) forwards infinite;
+    }
+    @keyframes drawLine {
+      0% { stroke-dashoffset: 1000; }
+      60%, 100% { stroke-dashoffset: 0; }
+    }
+
+    /* ── PRICING ── */
+    .pricing { background: var(--navy-dark); padding: 100px 5%; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3.5rem; }
+    .price-card {
+      background: rgba(7, 17, 29, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: var(--glass-shadow);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .price-card:hover { transform: translateY(-10px); border-color: rgba(102,0,153,0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(102,0,153,0.15); }
+    .price-card.featured {
+      border-color: var(--purple);
+      box-shadow: 0 0 50px rgba(102,0,153,0.2), inset 0 0 20px rgba(102,0,153,0.1);
+    }
+    .price-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: 0; right: 0;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light)); color: white;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1px;
+      padding: 0.4rem 1.2rem;
+      border-bottom-left-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .price-tier { font-size: 0.85rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 0.5rem; }
+    .price-name { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+    .price-amount {
+      font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800;
+      line-height: 1; margin-bottom: 0.5rem;
+    }
+    .price-period { font-size: 0.9rem; color: var(--gray); margin-bottom: 2rem; font-weight: 600; }
+    .price-features { list-style: none; margin-bottom: 2.5rem; }
+    .price-features li {
+      padding: 0.75rem 0; font-size: 0.95rem; color: var(--light-gray);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .price-features li::before { content: '✓'; color: var(--green); font-weight: 800; text-shadow: 0 0 5px rgba(51,204,51,0.5); }
+    .price-btn {
+      width: 100%; padding: 1rem; border-radius: 8px;
+      font-family: 'Arimo', sans-serif; font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: all 0.3s ease; text-align: center;
+    }
+    .price-btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid var(--glass-border);
+    }
+    .price-btn-outline:hover { border-color: var(--purple); color: var(--white); background: rgba(102,0,153,0.1); }
+    .price-btn-filled {
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .price-btn-filled:hover { box-shadow: 0 8px 25px var(--purple-glow); transform: translateY(-2px); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(102,0,153,0.25), rgba(255,122,26,0.1));
+      border-top: 1px solid rgba(102,0,153,0.3);
+      padding: 100px 5%; text-align: center; position: relative; overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    .cta-form {
+      display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: 0 auto;
+    }
+    .cta-input {
+      flex: 1; padding: 1rem 1.2rem; border-radius: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+      color: white; font-family: 'Arimo', sans-serif; font-size: 1rem;
+      outline: none; transition: all 0.3s ease; backdrop-filter: blur(10px);
+    }
+    .cta-input:focus { border-color: var(--orange); box-shadow: 0 0 15px rgba(255,122,26,0.2); background: rgba(255,255,255,0.08); }
+    .cta-submit {
+      background: var(--orange); color: white; border: none; cursor: pointer;
+      padding: 1rem 2rem; border-radius: 8px;
+      font-family: 'Arimo', sans-serif; font-weight: 700; font-size: 1rem;
+      transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .cta-submit:hover { background: #ff8e33; box-shadow: 0 0 25px var(--orange-glow); transform: translateY(-2px); }
+
+    /* ── MEDIA QUERIES (Desktop Progression) ── */
+    @media(min-width: 768px) {
+      .logobar-inner { flex-direction: row; justify-content: space-between; }
+      .problem-grid { grid-template-columns: repeat(3, 1fr); }
+      .solution-steps { flex-direction: row; }
+      .step { flex: 1; }
+      .solution-steps::before {
+        content: ''; position: absolute; top: 35px; left: 10%; right: 10%; height: 2px;
+        background: linear-gradient(90deg, var(--purple), var(--orange)); z-index: 0;
+      }
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+      .cta-form { flex-direction: row; }
+    }
+
+    @media(min-width: 1024px) {
+      .nav-links { display: flex; }
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+      .cta-form { flex-direction: row; }
+    }
+
+    /* ── ACCESSIBILITY & MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero::before, .hero::after { animation: none; display: none; }
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>Robo</span><span>Recruit</span><sup style="font-size:0.5em;color:var(--gray)">®</sup></div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#network">Network</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <button class="nav-cta">Deploy Now →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content reveal">
+      <div class="hero-badge"><span class="badge-dot"></span> Active in 28 NFL-City Markets</div>
+      <h1 class="hero-title">
+        Pre-Cleared<br>Drivers.<br><span class="accent-orange">Deployed in</span><br><span class="accent-purple">48 Hours.</span>
+      </h1>
+      <p class="hero-sub">
+        The ultimate autonomous recruitment engine for FedEx Ground contractors. AI-matched. Background-cleared. Ready to roll.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-chip"><span class="num">48h</span><span class="label">Time to Deploy</span></div>
+        <div class="stat-chip"><span class="num">10K+</span><span class="label">Cleared Drivers</span></div>
+        <div class="stat-chip"><span class="num">$0</span><span class="label">Employer Risk</span></div>
+      </div>
+      <div class="hero-ctas">
+        <button class="btn-primary">Request Drivers →</button>
+        <button class="btn-secondary">View Demo</button>
+      </div>
+    </div>
+
+    <!-- Dispatch Panel Mockup -->
+    <div class="hero-visual reveal" style="transition-delay: 0.2s;">
+      <div class="dispatch-panel">
+        <div class="panel-header">
+          <div class="panel-title">🚛 &nbsp;Cyber-Dispatch Dashboard</div>
+          <div class="panel-status"><span class="badge-dot"></span>Live Queue</div>
+        </div>
+
+        <div class="driver-row" tabindex="0" role="button" aria-label="View MVR for Marcus Johnson">
+          <div class="driver-info">
+            <div class="driver-avatar">MJ</div>
+            <div>
+              <div class="driver-name">Marcus Johnson</div>
+              <div class="driver-meta">CDL-B · Dallas, TX · 4.9★</div>
+            </div>
+          </div>
+          <div class="status-badge status-cleared">✓ CLEARED</div>
+        </div>
+
+        <div class="driver-row" tabindex="0" role="button" aria-label="View MVR for Sofia Reyes">
+          <div class="driver-info">
+            <div class="driver-avatar">SR</div>
+            <div>
+              <div class="driver-name">Sofia Reyes</div>
+              <div class="driver-meta">CDL-B · Houston, TX · 4.8★</div>
+            </div>
+          </div>
+          <div class="status-badge status-cleared">✓ CLEARED</div>
+        </div>
+
+        <div class="driver-row" tabindex="0" role="button" aria-label="View Matching status for Derek Williams">
+          <div class="driver-info">
+            <div class="driver-avatar" style="background:var(--navy-mid);">DW</div>
+            <div>
+              <div class="driver-name">Derek Williams</div>
+              <div class="driver-meta">CDL-B · Atlanta, GA · 4.7★</div>
+            </div>
+          </div>
+          <div class="status-badge status-matching">⚡ MATCHING</div>
+        </div>
+
+        <div class="panel-footer">
+          <div class="panel-kpi"><div class="kpi-num">12</div><div class="kpi-label">Ready</div></div>
+          <div class="panel-kpi"><div class="kpi-num">98%</div><div class="kpi-label">Fill Rate</div></div>
+          <button class="panel-cta">Auto-Deploy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO BAR -->
+<div class="logobar">
+  <div class="logobar-inner">
+    <div class="logobar-label">Trusted by Elite FedEx ISPs Nationwide</div>
+    <div class="logobar-logos">
+      <span class="logo-pill">TruckCo ISP</span>
+      <span class="logo-pill">GroundSpeed LLC</span>
+      <span class="logo-pill">Route Masters</span>
+      <span class="logo-pill">Swift Delivery</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">The Crisis</div>
+      <h2 class="section-title">Last-Mile Staffing is Broken.</h2>
+      <p class="section-sub">FedEx contractors burn cash on slow, manual hiring while trucks sit empty. We rebuilt the engine.</p>
+    </div>
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-num">60%</div>
+        <div class="problem-label">Annual Turnover</div>
+        <div class="problem-desc">Drivers cycle constantly. Replacing them manually drains operational focus.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">4-6w</div>
+        <div class="problem-label">Time-to-Hire</div>
+        <div class="problem-desc">Sourcing, interviewing, and clearing backgrounds takes weeks. Routes remain unfulfilled.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">$8K</div>
+        <div class="problem-label">Cost Per Hire</div>
+        <div class="problem-desc">Total sunk cost per driver before they even hit the road. Endless liability.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="how">
+  <div class="section-inner solution-inner">
+    <div class="reveal">
+      <div class="section-tag">The Engine</div>
+      <h2 class="section-title">Request to Road in 48h</h2>
+      <p class="section-sub" style="margin: 0 auto;">Our proprietary algorithm matches your route requirements with thousands of pre-cleared logistics professionals.</p>
+    </div>
+    <div class="solution-steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Submit Query</div>
+        <div class="step-desc">Specify headcount, CDL requirements, and market. Takes 60 seconds.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">AI Matches</div>
+        <div class="step-desc">Our cyber-dispatch scans proximity scores and clearance data instantly.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Pre-Cleared</div>
+        <div class="step-desc">MVR and background verifications are already done. Zero bottlenecks.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Deployed</div>
+        <div class="step-desc">Contractors hit your terminal in 48 hours. Guaranteed fill rate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stats-grid">
+    <div class="stat-block">
+      <div class="big-num">48h</div>
+      <div class="stat-label">Avg Deployment</div>
+      <div class="stat-sub">vs. 4–6 weeks industry average</div>
+    </div>
+    <div class="stat-block">
+      <div class="big-num">10K+</div>
+      <div class="stat-label">Network Pool</div>
+      <div class="stat-sub">Nationwide pre-vetted drivers</div>
+    </div>
+    <div class="stat-block">
+      <div class="big-num">98%</div>
+      <div class="stat-label">Fill Rate</div>
+      <div class="stat-sub">SLA Guaranteed Delivery</div>
+    </div>
+    <div class="stat-block">
+      <div class="big-num">$0</div>
+      <div class="stat-label">Employer Liability</div>
+      <div class="stat-sub">Fully autonomous contractors</div>
+    </div>
+  </div>
+</div>
+
+<!-- NETWORK -->
+<section class="network-section" id="network">
+  <div class="section-tag">Grid Active</div>
+  <h2 class="reveal">Deployed Across 28 Hubs</h2>
+  <p class="reveal" style="color:var(--gray); max-width: 600px; margin: 1rem auto;">High-density logistics corridors constantly mapped and populated with cleared talent.</p>
+
+  <div class="map-container reveal">
+    <div class="map-bg">
+      <svg class="road-svg" viewBox="0 0 860 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="road-line" d="M0 80 Q200 20 430 80 Q660 140 860 80" stroke="rgba(102,0,153,0.8)" stroke-width="2" fill="none"/>
+        <path class="road-line" d="M0 100 Q150 60 300 90 Q500 120 700 70 Q780 55 860 65" stroke="rgba(255,122,26,0.6)" stroke-width="1.5" fill="none" style="animation-delay: 0.5s;"/>
+        <path class="road-line" d="M0 50 Q250 90 430 55 Q610 20 860 50" stroke="rgba(51,204,51,0.5)" stroke-width="1" fill="none" style="animation-delay: 1s;"/>
+      </svg>
+      <div class="network-nodes">
+        <div class="node"><span class="node-dot"></span>Dallas</div>
+        <div class="node"><span class="node-dot"></span>Houston</div>
+        <div class="node"><span class="node-dot"></span>Chicago</div>
+        <div class="node"><span class="node-dot"></span>Atlanta</div>
+        <div class="node"><span class="node-dot"></span>Los Angeles</div>
+        <div class="node"><span class="node-dot"></span>New York</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag">Transparent Scaling</div>
+      <h2 class="section-title">Zero Bloat. Infinite Scale.</h2>
+      <p class="section-sub" style="margin: 0 auto;">No hidden recruiter fees. Pay only for successful deployments.</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="price-tier">Node</div>
+        <div class="price-name">On-Demand</div>
+        <div class="price-amount">$499</div>
+        <div class="price-period">per deployed driver</div>
+        <ul class="price-features">
+          <li>Access to entire network</li>
+          <li>72hr target deployment</li>
+          <li>Basic AI matching</li>
+          <li>Standard SLA</li>
+        </ul>
+        <button class="price-btn price-btn-outline">Start Request</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tier">Cluster</div>
+        <div class="price-name">Growth Rate</div>
+        <div class="price-amount">$1.4k<span style="font-size:1.2rem">/mo</span></div>
+        <div class="price-period">+ $299 per driver</div>
+        <ul class="price-features">
+          <li>Priority queuing</li>
+          <li>Guaranteed 48hr SLA</li>
+          <li>Dedicated API access</li>
+          <li>Behavioral logic screen</li>
+          <li>24/7 Support Channel</li>
+        </ul>
+        <button class="price-btn price-btn-filled">Initialize Pro</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">Network</div>
+        <div class="price-name">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-period">based on volume sizing</div>
+        <ul class="price-features">
+          <li>Multi-terminal logic</li>
+          <li>Custom ATS integration</li>
+          <li>Whitelist node creation</li>
+          <li>Predictive demand models</li>
+        </ul>
+        <button class="price-btn price-btn-outline">Contact Command</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative; z-index:1;">
+    <div class="section-tag">Initialize</div>
+    <h2 class="reveal">Power Up Your Fleet Today</h2>
+    <p class="reveal" style="color:var(--light-gray); max-width: 500px; margin: 0 auto 2rem; font-size: 1.1rem;">Inject pre-cleared logistics talent directly into your operation without the overhead.</p>
+    <div class="cta-form reveal">
+      <input class="cta-input" type="email" placeholder="Terminal/ISP Email" aria-label="Email address">
+      <button class="cta-submit">Execute Request →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: rgba(7,17,29,0.9); padding: 3rem 5%; border-top: 1px solid var(--glass-border);">
+  <div style="max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <div class="nav-logo" style="font-size: 1.1rem;"><span>Robo</span><span>Recruit</span><sup style="font-size:0.5em;color:var(--gray)">®</sup></div>
+      <div style="font-size: 0.85rem; color: var(--gray); margin-top: 0.5rem;">Cyber-Dispatch Logistics. Cleared. Ready.</div>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--gray);">© 2026 RoboRecruit® Network.</div>
+  </div>
+</footer>
+
+<script>
+  // Advanced Scroll Reveal using IntersectionObserver
+  document.addEventListener("DOMContentLoaded", () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    
+    reveals.forEach(r => io.observe(r));
+
+    // Instant hero reveal
+    const heroElements = document.querySelectorAll('.hero .reveal');
+    heroElements.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 150 + 100);
+    });
+    
+    // Performance optimization: prevent hover layout thrashing by using will-change
+    const cards = document.querySelectorAll('.problem-card, .price-card, .dispatch-panel');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => { card.style.willChange = 'transform, box-shadow'; });
+      card.addEventListener('mouseleave', () => { setTimeout(() => { card.style.willChange = 'auto'; }, 400); });
+    });
+  });
+</script>
+</body>
+</html>

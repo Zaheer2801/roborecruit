@@ -1,0 +1,398 @@
+================================================================
+ROBORECRUIT® — COMPLETE WEBSITE COPY DOCUMENT
+================================================================
+Use every word from this document exactly as written.
+Do not change headlines, subheadlines, or CTA text.
+================================================================
+
+
+----------------------------------------------------------------
+NAVIGATION
+----------------------------------------------------------------
+Logo: RoboRecruit®
+Links: How It Works · Network · Pricing · Contact
+CTA Button: Request Drivers →
+
+
+----------------------------------------------------------------
+HERO SECTION
+----------------------------------------------------------------
+Badge: ● Live Driver Pool — 10,000+ Pre-Cleared Nationwide
+
+Headline:
+Your Routes.
+Filled in 48 Hours.
+Guaranteed.
+
+Subheadline:
+The only on-demand driver platform built exclusively for FedEx
+Ground ISPs. Scale your fleet without the recruitment headache.
+
+Stat 1: 48h — AVG MATCH TIME
+Stat 2: 98% — SUCCESS RATE
+Stat 3: $0 — UPFRONT COST
+
+Primary CTA Button: Request Drivers Now →
+Secondary CTA Button: See How It Works
+
+--- DISPATCH PANEL (right side of hero) ---
+Panel Title: Live Driver Pool
+Panel Metrics: CLEARED 847 · MATCHING 124 · DEPLOYED 12
+
+Driver Card 1:
+Name: Marcus T.
+License: CDL-B · Dallas, TX
+Rating: ⭐ 4.9
+Status Badge: CLEARED (green)
+
+Driver Card 2:
+Name: Derek W.
+License: CDL-B · Atlanta, GA
+Rating: ⭐ 4.7
+Status Badge: MATCHING (orange)
+
+Driver Card 3:
+Name: Aisha L.
+License: CDL-B · Chicago, IL
+Rating: ⭐ 5.0
+Status Badge: STANDBY (purple)
+
+Panel Footer:
+12 Drivers Ready · 36h Avg Deploy · 98% Fill Rate
+Button: Deploy →
+
+
+----------------------------------------------------------------
+SOCIAL PROOF BAR
+----------------------------------------------------------------
+Label: Trusted by FedEx Ground ISPs operating across the country
+
+Company Pills:
+TruckCo ISP · GroundSpeed LLC · Route Masters · Swift Delivery Co · Apex Last Mile · Premier Ground Services
+
+
+----------------------------------------------------------------
+PROBLEM SECTION
+----------------------------------------------------------------
+Section Tag: THE PROBLEM
+
+Headline:
+Last-Mile Staffing Is Broken.
+And It's Costing You Every Single Day.
+
+Subheadline:
+FedEx Ground ISPs lose drivers constantly. Replacing them is
+slow, expensive, and operationally crippling. Every empty route
+is revenue walking out the door.
+
+--- Card 1 ---
+Stat: 60%
+Title: Annual Driver Turnover
+Copy:
+Six out of ten drivers in last-mile delivery leave within the
+year. You're not running a business — you're running a revolving
+door. And every exit hits your service record, your finances,
+and your sanity.
+
+--- Card 2 ---
+Stat: 4–6 Wks
+Title: Average Time-to-Hire
+Copy:
+That's how long traditional hiring takes. Background checks,
+MVR pulls, drug screens, onboarding — all while your routes sit
+empty and FedEx is watching your on-time numbers drop. You don't
+have six weeks. You have today.
+
+--- Card 3 ---
+Stat: $8,000
+Title: True Cost Per Hire
+Copy:
+Recruiting fees, screening costs, training time, lost
+productivity — each driver you bring on costs between five and
+eight thousand dollars before they touch a wheel. Multiply that
+by your turnover rate and you're hemorrhaging money every
+quarter.
+
+
+----------------------------------------------------------------
+HOW IT WORKS SECTION
+----------------------------------------------------------------
+Section Tag: THE SOLUTION
+
+Headline:
+From Request to Road
+in 48 Hours Flat.
+
+Subheadline:
+We've already done the hard part. Every driver in our network
+is pre-screened, pre-cleared, and ready to work. All you do is
+tell us what you need.
+
+--- Step 01 ---
+Title: Submit Your Request
+Copy:
+Tell us your market, how many drivers you need, and your start
+date. Takes two minutes. No paperwork, no phone tag, no waiting
+on hold.
+
+--- Step 02 ---
+Title: AI Matches Instantly
+Copy:
+Our algorithm surfaces the best pre-screened candidates in your
+specific market within minutes — matched by license class,
+rating, availability, and proximity to your routes.
+
+--- Step 03 ---
+Title: Drivers Are Already Cleared
+Copy:
+Background check — done. MVR report — done. Drug screen — done.
+Every driver in our pool completed full clearance before you
+ever submitted your request. Zero wait on compliance.
+
+--- Step 04 ---
+Title: Deployed to Your Routes
+Copy:
+Drivers are on your routes within 48 to 72 hours. If we don't
+fill your request in that window, you don't pay. That's not a
+promise — it's a guarantee written into every contract.
+
+
+----------------------------------------------------------------
+STATS BAND
+----------------------------------------------------------------
+Stat 1:
+Number: 48h
+Label: Average Deployment Time
+Sub-label: vs. 4–6 weeks industry standard
+
+Stat 2:
+Number: 10,000+
+Label: Pre-Cleared Drivers Nationwide
+Sub-label: Growing every week
+
+Stat 3:
+Number: 98%
+Label: Guaranteed Fill Rate
+Sub-label: Or your money back. Period.
+
+Stat 4:
+Number: $0
+Label: Employer Liability
+Sub-label: Every driver is fully independent
+
+
+----------------------------------------------------------------
+NETWORK MAP SECTION
+----------------------------------------------------------------
+Section Tag: THE NETWORK
+
+Headline:
+Deployed Across
+28 NFL-City Markets.
+
+Subheadline:
+Wherever your operation runs, our driver pool is already there.
+Real-time activation covering the nation's highest-density
+last-mile delivery corridors — and expanding every month.
+
+Below Map Note:
+Don't see your market? We're adding cities every 30 days.
+Get on the waitlist and we'll notify you the day we go live
+in your area.
+
+--- 28 Cities to Show on Map ---
+Los Angeles, San Francisco, Seattle, Portland, Phoenix,
+Las Vegas, Denver, Dallas, Houston, San Antonio, Kansas City,
+Minneapolis, Chicago, Detroit, Indianapolis, Nashville,
+Atlanta, Charlotte, Tampa, Miami, Jacksonville, New Orleans,
+Memphis, Cincinnati, Cleveland, Pittsburgh, Philadelphia,
+New York, Boston, Washington DC
+
+
+----------------------------------------------------------------
+COMPARISON TABLE
+----------------------------------------------------------------
+Section Tag: WHY ROBORECRUIT®
+
+Headline:
+No Other Platform
+Even Comes Close.
+
+Subheadline:
+We built this specifically for FedEx Ground ISPs. Not generic
+staffing. Not job boards. Not in-house HR grinding through
+applications. Purpose-built for your exact problem.
+
+--- Table Data ---
+Feature                    | RoboRecruit®       | Traditional Staffing | In-House Hiring
+---------------------------|--------------------|-----------------------|----------------
+Time to Deploy             | 48–72 Hours ✅     | 2–4 Weeks ❌          | 4–6 Weeks ❌
+Pre-Cleared Drivers        | ✅                 | ❌                    | ❌
+AI-Powered Matching        | ✅                 | ❌                    | ❌
+FedEx ISP Specialists      | ✅                 | ❌                    | ❌
+Zero Employer Liability    | ✅                 | ❌                    | ❌
+On-Demand Scaling          | ✅                 | Limited ⚠️            | ❌
+48h Deployment Guarantee   | ✅                 | ❌                    | ❌
+Cost Per Driver            | Platform Fee Only  | $5K–$8K ❌            | $5K–$8K ❌
+
+
+----------------------------------------------------------------
+TESTIMONIAL 1
+----------------------------------------------------------------
+Quote:
+"When demand spiked 40% heading into peak season, I had two
+choices — turn away work or scramble for six weeks trying to
+hire. RoboRecruit® gave me a third option I didn't know
+existed. In five days, I had 12 pre-cleared drivers running my
+routes. We captured every single delivery opportunity that
+season. I won't run a peak season without them again."
+
+Name: James R.
+Title: Operations Director, FedEx Ground ISP · Dallas, TX
+Rating: ⭐⭐⭐⭐⭐
+
+
+----------------------------------------------------------------
+PRICING SECTION
+----------------------------------------------------------------
+Section Tag: PRICING
+
+Headline:
+Simple. Transparent.
+No Surprises, Ever.
+
+Subheadline:
+No long-term contracts. No hidden fees. No retainers you pay
+whether you use us or not. You pay for drivers placed —
+nothing else.
+
+--- Tier 1: Starter ---
+Name: On-Demand
+Price: $499
+Per: per driver placed
+Tag: For ISPs testing the water
+
+Description:
+Perfect for operators who need occasional coverage or want to
+experience the RoboRecruit® difference before committing to a
+plan. Pay only when you place a driver.
+
+Features:
+- Up to 5 drivers per month
+- 48–72 hour deployment window
+- Pre-cleared candidate pool
+- Standard AI matching
+- Email support
+
+CTA: Get Started →
+
+--- Tier 2: Growth (MOST POPULAR) ---
+Name: Growth
+Price: $1,499/mo
+Per: + $299 per driver placed
+Tag: For ISPs scaling fast
+
+Description:
+Built for the operator who's done scrambling. Unlimited driver
+placements, priority matching, and a dedicated account manager
+who knows your operation by name. This is how serious ISPs
+run their staffing.
+
+Features:
+- Unlimited drivers per month
+- Priority 48-hour deployment
+- Pre-cleared + behavioral screening
+- Advanced AI matching
+- Dedicated account manager
+- Driver performance dashboard
+- Direct phone support
+
+CTA: Request a Demo →
+
+--- Tier 3: Enterprise ---
+Name: Fleet
+Price: Custom
+Per: tailored to your fleet size
+Tag: For multi-location ISP operations
+
+Description:
+Running multiple terminals across multiple markets? We build
+a custom driver pool around your operation, integrate with
+your existing systems, and assign a team — not just a manager
+— to your account.
+
+Features:
+- Multi-location & multi-market support
+- 24-hour deployment SLA
+- API + ATS system integrations
+- Dedicated custom driver pool
+- White-glove onboarding
+- Quarterly business reviews
+- Executive account team
+
+CTA: Contact Sales →
+
+Below Pricing Note:
+All plans include our 48-hour fill guarantee. If we don't
+deliver, you don't pay. No questions asked.
+
+
+----------------------------------------------------------------
+TESTIMONIAL 2
+----------------------------------------------------------------
+Quote:
+"I used to spend 30% of my week on hiring. Posting jobs,
+reviewing applications, scheduling interviews, chasing
+background checks. RoboRecruit® gave me that 30% back. My
+operation runs tighter, my stress is lower, and my service
+scores have never been better."
+
+Name: Sandra M.
+Title: Owner, FedEx Ground ISP · Chicago, IL
+Rating: ⭐⭐⭐⭐⭐
+
+
+----------------------------------------------------------------
+CTA SECTION
+----------------------------------------------------------------
+Section Tag: GET STARTED
+
+Headline:
+Ready to Never Stress
+About Staffing Again?
+
+Subheadline:
+Tell us where you operate and we'll show you exactly how many
+pre-cleared drivers we have ready in your market — right now,
+today.
+
+Input Placeholder: Your work email address
+Button: Request Drivers Now →
+
+Below Form:
+No commitment required. No credit card. We'll call you within
+24 hours with your market availability report.
+
+Trust Signals:
+🔒 Your information is never shared
+⭐ 98% Fill Rate Guaranteed
+📞 Real humans answer our phones
+
+
+----------------------------------------------------------------
+FOOTER
+----------------------------------------------------------------
+Logo: RoboRecruit®
+Tagline: Drivers On Demand. Cleared to Go.®
+
+Footer Links:
+How It Works · Network · Pricing · Privacy Policy · Terms of Service
+
+Copyright:
+© 2026 RoboRecruit®. All rights reserved.
+Currently raising $2M Seed Round — investor inquiries: invest@roborecruit.com
+
+
+================================================================
+END OF COPY DOCUMENT
+================================================================
